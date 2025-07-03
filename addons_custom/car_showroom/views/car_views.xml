@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="car_showroom_tree_view" model="ir.ui.view">
+        <field name="name">car.showroom.tree</field>
+        <field name="model">car.showroom</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="brand"/>
+                <field name="price"/>
+                <field name="stock"/>
+                <field name="image" widget="image" width="50" height="50"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="car_showroom_form_view" model="ir.ui.view">
+        <field name="name">car.showroom.form</field>
+        <field name="model">car.showroom</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <notebook>
+                        <page string="General">
+                            <group>
+                                <field name="name"/>
+                                <field name="brand"/>
+                            </group>
+                        </page>
+                        <page string="Details">
+                            <group>
+                                <field name="price"/>
+                                <field name="stock"/>
+                                <field name="image" widget="image" width="200" height="200"/>
+                            </group>
+                            <div>
+                                <button name="increase_stock" type="object" string="Tăng số lượng" class="oe_highlight"/>
+                                <button name="decrease_stock" type="object" string="Giamr số lượng" class="oe_highlight"/>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="car_showroom_search_view" model="ir.ui.view">
+        <field name="name">car.showroom.search</field>
+        <field name="model">car.showroom</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="brand"/>
+                <filter string="In Stock" name="in_stock" domain="[('stock', '>', 0)]"/>
+                <filter string="Out of Stock" name="out_of_stock" domain="[('stock', '=', 0)]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action to open the view -->
+    <record id="car_showroom_action" model="ir.actions.act_window">
+        <field name="name">Car Showroom</field>
+        <field name="res_model">car.showroom</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="car_showroom_search_view"/>
+    </record>
+
+
+
+    <!-- Menu Item -->
+    <menuitem id="car_showroom_menu_root" name="Car Showroom" sequence="10"/>
+    <menuitem id="car_showroom_menu_cars" name="Cars" parent="car_showroom_menu_root"
+              action="car_showroom_action" sequence="10"/>
+</odoo>

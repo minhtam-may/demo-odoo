@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="kenh_ban_hang.list">
+      <field name="name">kenh_ban_hang list</field>
+      <field name="model">kenh_ban_hang.kenh_ban_hang</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </list>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="kenh_ban_hang.action_window">
+      <field name="name">kenh_ban_hang window</field>
+      <field name="res_model">kenh_ban_hang.kenh_ban_hang</field>
+      <field name="view_mode">list,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="kenh_ban_hang.action_server">
+      <field name="name">kenh_ban_hang server</field>
+      <field name="model_id" ref="model_kenh_ban_hang_kenh_ban_hang"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "list,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="kenh_ban_hang" id="kenh_ban_hang.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="kenh_ban_hang.menu_1" parent="kenh_ban_hang.menu_root"/>
+    <menuitem name="Menu 2" id="kenh_ban_hang.menu_2" parent="kenh_ban_hang.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="kenh_ban_hang.menu_1_list" parent="kenh_ban_hang.menu_1"
+              action="kenh_ban_hang.action_window"/>
+    <menuitem name="Server to list" id="kenh_ban_hang" parent="kenh_ban_hang.menu_2"
+              action="kenh_ban_hang.action_server"/>
+-->
+  </data>
+</odoo>
