@@ -10,12 +10,16 @@
         - Theo dõi tồn kho
     """,
     'author': 'Your Name',
-    'category': 'Business',
+    'category': 'Sales',
     'license': 'LGPL-3',
     'depends': ['base'],
     'data': [
         'security/ir.model.access.csv',
         'views/car_views.xml',
+        'data/demo.xml',
+    ],
+    'demo': [
+        'data/demo.xml',
     ],
     'installable': True,
     'application': True,

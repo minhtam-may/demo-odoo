@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Demo data for car.showroom -->
+    <record id="car_1" model="car.showroom">
+        <field name="name">Toyota Camry</field>
+        <field name="brand">Toyota</field>
+        <field name="price">1200000000</field>
+        <field name="stock">5</field>
+        <field name="image" type="base64" file="car_showroom/static/img/camry1.png"/>
+
+    </record>
+    <record id="car_2" model="car.showroom">
+        <field name="name">Honda Civic</field>
+        <field name="brand">Honda</field>
+        <field name="price">900000000</field>
+        <field name="stock">8</field>
+        <field name="image" type="base64" file="car_showroom/static/img/civic.png"/>
+
+    </record>
+    <record id="car_3" model="car.showroom">
+        <field name="name">Mazda CX-5</field>
+        <field name="brand">Mazda</field>
+        <field name="price">1100000000</field>
+        <field name="stock">3</field>
+        <field name="image" type="base64" file="car_showroom/static/img/cx5.png"/>
+    </record>
+    <record id="car_4" model="car.showroom">
+        <field name="name">Hyundai Tucson</field>
+        <field name="brand">Hyundai</field>
+        <field name="price">950000000</field>
+        <field name="stock">6</field>
+        <field name="image" type="base64" file="car_showroom/static/img/tucson.png"/>        
+    </record>
+    <record id="car_5" model="car.showroom">
+        <field name="name">Ford Ranger</field>
+        <field name="brand">Ford</field>
+        <field name="price">1300000000</field>
+        <field name="stock">4</field>
+        <field name="image" type="base64" file="car_showroom/static/img/ford.png"/>       
+    </record>
+    <record id="car_6" model="car.showroom">
+        <field name="name">VinFast Lux A2.0</field>
+        <field name="brand">VinFast</field>
+        <field name="price">1400000000</field>
+        <field name="stock">7</field>
+        <field name="image" type="base64" file="car_showroom/static/img/vin.png"/>       
+    </record>
+    <record id="car_7" model="car.showroom">
+        <field name="name">BMW X5</field>
+        <field name="brand">BMW</field>
+        <field name="price">2500000000</field>
+        <field name="stock">2</field>
+        <field name="image" type="base64" file="car_showroom/static/img/bmw.png"/>       
+    </record>
+    <record id="car_8" model="car.showroom">
+        <field name="name">Mercedes C-Class</field>
+        <field name="brand">Mercedes</field>
+        <field name="price">1800000000</field>
+        <field name="stock">3</field>
+        <field name="image" type="base64" file="car_showroom/static/img/bmw.png"/>       
+    </record>
+    <record id="car_9" model="car.showroom">
+        <field name="name">Kia Sorento</field>
+        <field name="brand">Kia</field>
+        <field name="price">1150000000</field>
+        <field name="stock">6</field>
+        <field name="image" type="base64" file="car_showroom/static/img/sorento.jpg"/>      
+
+    </record>
+    <record id="car_10" model="car.showroom">
+        <field name="name">Mitsubishi Outlander</field>
+        <field name="brand">Mitsubishi</field>
+        <field name="price">1000000000</field>
+        <field name="stock">4</field>
+        <field name="image" type="base64" file="car_showroom/static/img/outlander.jpg"/>       
+    </record>
+</odoo>

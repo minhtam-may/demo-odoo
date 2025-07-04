@@ -1,5 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <!-- Search View -->
+    <record id="car_showroom_search_view" model="ir.ui.view">
+        <field name="name">car.showroom.search</field>
+        <field name="model">car.showroom</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="brand"/>
+                <filter string="In Stock" name="in_stock" domain="[('stock', '>', 0)]"/>
+                <filter string="Out of Stock" name="out_of_stock" domain="[('stock', '=', 0)]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action to open the view -->
+    <record id="car_showroom_action" model="ir.actions.act_window">
+        <field name="name">Car Showroom</field>
+        <field name="res_model">car.showroom</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="car_showroom_search_view"/>
+    </record>
+
+    <!-- Kanban View -->
+    <record id="car_showroom_kanban_view" model="ir.ui.view">
+        <field name="name">car.showroom.kanban</field>
+        <field name="model">car.showroom</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="brand"/>
+                <field name="price"/>
+                <field name="stock"/>
+                <field name="image"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_card">
+                            <div class="oe_kanban_image">
+                                <!-- <field name="image" widget="image" options="{'size': [100, 300]}" alt="Car Image"/> -->
+                                <div style="width: 180px; height: 120px; overflow: hidden;">
+                                    <field name="image" widget="image" options="{'size': [180, 120]}" class="w-100 h-100" />
+                                </div>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <strong><field name="name"/></strong><br/>
+                                <field name="brand"/><br/>
+                                Giá: <field name="price"/> VND<br/>
+                                Tồn kho: <field name="stock"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Inherited Kanban View to Add Detail Button -->
+    <record id="car_showroom_kanban_inherit_view" model="ir.ui.view">
+        <field name="name">car.showroom.kanban.inherit</field>
+        <field name="model">car.showroom</field>
+        <field name="inherit_id" ref="car_showroom_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_kanban_card')]" position="inside">
+                <div class="oe_kanban_action">
+                    <a class="btn btn-primary" t-attf-href="/web#id={{ record.id.raw_value }}&amp;model=car.showroom&amp;view_type=form" role="button">
+                        Chi tiết
+                    </a>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
     <!-- Tree View -->
     <record id="car_showroom_tree_view" model="ir.ui.view">
         <field name="name">car.showroom.tree</field>
@@ -11,7 +82,7 @@
                 <field name="brand"/>
                 <field name="price"/>
                 <field name="stock"/>
-                <field name="image" widget="image" width="50" height="50"/>
+                <field name="image" widget="image" options="{'size': [50, 50]}"/>
             </list>
         </field>
     </record>
@@ -34,11 +105,11 @@
                             <group>
                                 <field name="price"/>
                                 <field name="stock"/>
-                                <field name="image" widget="image" width="200" height="200"/>
+                                <field name="image" widget="image" options="{'size': [200, 200]}"/>
                             </group>
                             <div>
                                 <button name="increase_stock" type="object" string="Tăng số lượng" class="oe_highlight"/>
-                                <button name="decrease_stock" type="object" string="Giamr số lượng" class="oe_highlight"/>
+                                <button name="decrease_stock" type="object" string="Giảm số lượng" class="oe_highlight"/>
                             </div>
                         </page>
                     </notebook>
@@ -46,29 +117,6 @@
             </form>
         </field>
     </record>
-
-    <record id="car_showroom_search_view" model="ir.ui.view">
-        <field name="name">car.showroom.search</field>
-        <field name="model">car.showroom</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="name"/>
-                <field name="brand"/>
-                <filter string="In Stock" name="in_stock" domain="[('stock', '>', 0)]"/>
-                <filter string="Out of Stock" name="out_of_stock" domain="[('stock', '=', 0)]"/>
-            </search>
-        </field>
-    </record>
-
-    <!-- Action to open the view -->
-    <record id="car_showroom_action" model="ir.actions.act_window">
-        <field name="name">Car Showroom</field>
-        <field name="res_model">car.showroom</field>
-        <field name="view_mode">list,form</field>
-        <field name="search_view_id" ref="car_showroom_search_view"/>
-    </record>
-
-
 
     <!-- Menu Item -->
     <menuitem id="car_showroom_menu_root" name="Car Showroom" sequence="10"/>
