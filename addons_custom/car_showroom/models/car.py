@@ -16,5 +16,4 @@ class CarShowroom(models.Model):
     def decrease_stock(self):
         if self.stock > 0:
             self.stock -= 1
-        else:
-            raise UserError('Số lượng tồn kho không thể âm!')
+    

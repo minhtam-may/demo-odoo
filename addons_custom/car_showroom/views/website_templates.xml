@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Template hiển thị xe nổi bật -->
+    <template id="car_showroom_featured_cars_snippet_content" name="Xe nổi bật">
+        <section class="s_product_list pt-5 pb-5">
+            <div class="container">
+                <h2 class="text-center mb-4">Xe nổi bật</h2>
+                <div class="row">
+                    <t t-foreach="featured_cars" t-as="car">
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                        <t t-if="car.image">
+                                            <img t-att-src="'/web/image/car.showroom/%s/image' % car.id" class="card-img-top" style="height: 200px; object-fit: cover;" alt=""/>
+                                        </t>
+                                <div class="card-body">
+                                    <h5 class="card-title"><t t-esc="car.name"/></h5>
+                                    <p class="card-text">Hãng xe: <t t-esc="car.brand"/></p>
+                                    <p class="card-text">Giá: <t t-esc="'{:,}'.format(car.price)"/> VND</p>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!-- Gọi snippet này trong trang /cars -->
+    <template id="car_showroom_list" name="Car List">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure">
+                <!-- Gọi template snippet -->
+                <t t-call="car_showroom.car_showroom_featured_cars_snippet_content"/>
+
+                <!-- Phần còn lại của trang danh sách xe -->
+                <section class="s_product_list pt-5 pb-5">
+                    <div class="container">
+                        <h2 class="text-center mb-4">Danh sách xe</h2>
+                        <div class="row">
+                            <t t-foreach="cars" t-as="car">
+                                <div class="col-md-4 mb-4">
+                                    <div class="card h-100">
+                                        <t t-if="car.image">
+                                            <img t-att-src="'/web/image/car.showroom/%s/image' % car.id" class="card-img-top" style="height: 200px; object-fit: cover;" alt=""/>
+
+                                        </t>
+                                        <div class="card-body">
+                                            <h5 class="card-title"><t t-esc="car.name"/></h5>
+                                            <p class="card-text">Hãng xe: <t t-esc="car.brand"/></p>
+                                            <p class="card-text">Giá: <t t-esc="'{:,}'.format(car.price)"/> VND</p>
+                                            <p class="card-text">Tồn kho: <t t-esc="car.stock"/></p>
+                                            <a t-att-href="'/car/%s' % car.id" class="btn btn-primary">Xem chi tiết</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+
+    <!-- Template chi tiết xe -->
+    <template id="car_showroom_detail" name="Car Detail">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure">
+                <section class="s_product pt-5 pb-5">
+                    <div class="container">
+                        <h2><t t-esc="car.name"/></h2>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <t t-if="car.image">
+                                    <img t-att-src="'/web/image/car.showroom/%s/image' % car.id" class="img-fluid" style="max-height: 400px;" alt="Hình ảnh xe"/>
+
+                                </t>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Hãng xe:</strong> <t t-esc="car.brand"/></p>
+                                <p><strong>Giá:</strong> <t t-esc="'{:,}'.format(car.price)"/> VND</p>
+                                <p><strong>Tồn kho:</strong> <t t-esc="car.stock"/></p>
+                                <a href="/cars" class="btn btn-secondary">Quay lại danh sách</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+
+    <!-- Thêm menu để truy cập -->
+    <record id="car_showroom_menu" model="website.menu">
+        <field name="name">Cars</field>
+        <field name="url">/cars</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">10</field>
+    </record>
+</odoo>
