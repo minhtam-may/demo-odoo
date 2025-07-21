@@ -1,77 +1,141 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <!-- Demo data for car.showroom -->
-    <record id="car_1" model="car.showroom">
-        <field name="name">Toyota Camry</field>
-        <field name="brand">Toyota</field>
-        <field name="price">1200000000</field>
-        <field name="stock">5</field>
-        <field name="image" type="base64" file="car_showroom/static/img/camry1.png"/>
+    <data>
+        <!-- Tạo danh mục sản phẩm -->
+        <record id="car_category" model="product.category">
+            <field name="name">Xe hơi</field>
+        </record>
 
-    </record>
-    <record id="car_2" model="car.showroom">
-        <field name="name">Honda Civic</field>
-        <field name="brand">Honda</field>
-        <field name="price">900000000</field>
-        <field name="stock">8</field>
-        <field name="image" type="base64" file="car_showroom/static/img/civic.png"/>
+        <!-- Tạo thương hiệu (product.brand) -->
+        <!-- <record id="brand_toyota" model="product.brand">
+            <field name="name">Toyota</field>
+        </record>
+        <record id="brand_honda" model="product.brand">
+            <field name="name">Honda</field>
+        </record>
+        <record id="brand_mazda" model="product.brand">
+            <field name="name">Mazda</field>
+        </record>
+        <record id="brand_hyundai" model="product.brand">
+            <field name="name">Hyundai</field>
+        </record>
+        <record id="brand_ford" model="product.brand">
+            <field name="name">Ford</field>
+        </record>
+        <record id="brand_vinfast" model="product.brand">
+            <field name="name">VinFast</field>
+        </record>
+        <record id="brand_bmw" model="product.brand">
+            <field name="name">BMW</field>
+        </record>
+        <record id="brand_mercedes" model="product.brand">
+            <field name="name">Mercedes</field>
+        </record>
+        <record id="brand_kia" model="product.brand">
+            <field name="name">Kia</field>
+        </record>
+        <record id="brand_mitsubishi" model="product.brand">
+            <field name="name">Mitsubishi</field>
+        </record> -->
 
-    </record>
-    <record id="car_3" model="car.showroom">
-        <field name="name">Mazda CX-5</field>
-        <field name="brand">Mazda</field>
-        <field name="price">1100000000</field>
-        <field name="stock">3</field>
-        <field name="image" type="base64" file="car_showroom/static/img/cx5.png"/>
-    </record>
-    <record id="car_4" model="car.showroom">
-        <field name="name">Hyundai Tucson</field>
-        <field name="brand">Hyundai</field>
-        <field name="price">950000000</field>
-        <field name="stock">6</field>
-        <field name="image" type="base64" file="car_showroom/static/img/tucson.png"/>        
-    </record>
-    <record id="car_5" model="car.showroom">
-        <field name="name">Ford Ranger</field>
-        <field name="brand">Ford</field>
-        <field name="price">1300000000</field>
-        <field name="stock">4</field>
-        <field name="image" type="base64" file="car_showroom/static/img/ford.png"/>       
-    </record>
-    <record id="car_6" model="car.showroom">
-        <field name="name">VinFast Lux A2.0</field>
-        <field name="brand">VinFast</field>
-        <field name="price">1400000000</field>
-        <field name="stock">7</field>
-        <field name="image" type="base64" file="car_showroom/static/img/vin.png"/>       
-    </record>
-    <record id="car_7" model="car.showroom">
-        <field name="name">BMW X5</field>
-        <field name="brand">BMW</field>
-        <field name="price">2500000000</field>
-        <field name="stock">2</field>
-        <field name="image" type="base64" file="car_showroom/static/img/bmw.png"/>       
-    </record>
-    <record id="car_8" model="car.showroom">
-        <field name="name">Mercedes C-Class</field>
-        <field name="brand">Mercedes</field>
-        <field name="price">1800000000</field>
-        <field name="stock">3</field>
-        <field name="image" type="base64" file="car_showroom/static/img/bmw.png"/>       
-    </record>
-    <record id="car_9" model="car.showroom">
-        <field name="name">Kia Sorento</field>
-        <field name="brand">Kia</field>
-        <field name="price">1150000000</field>
-        <field name="stock">6</field>
-        <field name="image" type="base64" file="car_showroom/static/img/sorento.jpg"/>      
+        <!-- Thêm sản phẩm (product.template) -->
+        <record id="product_toyota_camry" model="product.template">
+            <field name="name">Toyota Camry</field>
+            <field name="categ_id" ref="car_category"/>
+            <!-- <field name="product_brand_id" ref="brand_toyota"/> -->
+            <field name="list_price">1200000000</field>
+            <field name="qty_available">5</field>
+            <field name="image_1920" type="base64" file="car_showroom/static/img/camry1.png"/>
+            <field name="type">consu</field> <!-- Sản phẩm có thể bán -->
+        </record>
 
-    </record>
-    <record id="car_10" model="car.showroom">
-        <field name="name">Mitsubishi Outlander</field>
-        <field name="brand">Mitsubishi</field>
-        <field name="price">1000000000</field>
-        <field name="stock">4</field>
-        <field name="image" type="base64" file="car_showroom/static/img/outlander.jpg"/>       
-    </record>
+        <record id="product_honda_civic" model="product.template">
+            <field name="name">Honda Civic</field>
+            <field name="categ_id" ref="car_category"/>
+            <!-- <field name="product_brand_id" ref="brand_honda"/> -->
+            <field name="list_price">900000000</field>
+            <field name="qty_available">8</field>
+            <field name="image_1920" type="base64" file="car_showroom/static/img/civic.png"/>
+            <field name="type">consu</field>
+        </record>
+
+        <record id="product_mazda_cx5" model="product.template">
+            <field name="name">Mazda CX-5</field>
+            <field name="categ_id" ref="car_category"/>
+            <!-- <field name="product_brand_id" ref="brand_mazda"/> -->
+            <field name="list_price">1100000000</field>
+            <field name="qty_available">3</field>
+            <field name="image_1920" type="base64" file="car_showroom/static/img/cx5.png"/>
+            <field name="type">consu</field>
+        </record>
+
+        <record id="product_hyundai_tucson" model="product.template">
+            <field name="name">Hyundai Tucson</field>
+            <field name="categ_id" ref="car_category"/>
+            <!-- <field name="product_brand_id" ref="brand_hyundai"/> -->
+            <field name="list_price">950000000</field>
+            <field name="qty_available">6</field>
+            <field name="image_1920" type="base64" file="car_showroom/static/img/tucson.png"/>
+            <field name="type">consu</field>
+        </record>
+
+        <record id="product_ford_ranger" model="product.template">
+            <field name="name">Ford Ranger</field>
+            <field name="categ_id" ref="car_category"/>
+            <!-- <field name="product_brand_id" ref="brand_ford"/> -->
+            <field name="list_price">1300000000</field>
+            <field name="qty_available">4</field>
+            <field name="image_1920" type="base64" file="car_showroom/static/img/ford.png"/>
+            <field name="type">consu</field>
+        </record>
+
+        <record id="product_vinfast_lux_a20" model="product.template">
+            <field name="name">VinFast Lux A2.0</field>
+            <field name="categ_id" ref="car_category"/>
+            <!-- <field name="product_brand_id" ref="brand_vinfast"/> -->
+            <field name="list_price">1400000000</field>
+            <field name="qty_available">7</field>
+            <field name="image_1920" type="base64" file="car_showroom/static/img/vin.png"/>
+            <field name="type">consu</field>
+        </record>
+
+        <record id="product_bmw_x5" model="product.template">
+            <field name="name">BMW X5</field>
+            <field name="categ_id" ref="car_category"/>
+            <!-- <field name="product_brand_id" ref="brand_bmw"/> -->
+            <field name="list_price">2500000000</field>
+            <field name="qty_available">2</field>
+            <field name="image_1920" type="base64" file="car_showroom/static/img/bmw.png"/>
+            <field name="type">consu</field>
+        </record>
+
+        <!-- <record id="product_mercedes_cclass" model="product.template">
+            <field name="name">Mercedes C-Class</field>
+            <field name="categ_id" ref="car_category"/>
+            <field name="list_price">1800000000</field>
+            <field name="qty_available">3</field>
+            <field name="image_1920" type="base64" file="car_showroom/static/img/mercedes.png"/>
+            <field name="type">consu</field>
+        </record> -->
+
+        <record id="product_kia_sorento" model="product.template">
+            <field name="name">Kia Sorento</field>
+            <field name="categ_id" ref="car_category"/>
+            <!-- <field name="product_brand_id" ref="brand_kia"/> -->
+            <field name="list_price">1150000000</field>
+            <field name="qty_available">6</field>
+            <field name="image_1920" type="base64" file="car_showroom/static/img/sorento.jpg"/>
+            <field name="type">consu</field>
+        </record>
+
+        <record id="product_mitsubishi_outlander" model="product.template">
+            <field name="name">Mitsubishi Outlander</field>
+            <field name="categ_id" ref="car_category"/>
+            <!-- <field name="product_brand_id" ref="brand_mitsubishi"/> -->
+            <field name="list_price">1000000000</field>
+            <field name="qty_available">4</field>
+            <field name="image_1920" type="base64" file="car_showroom/static/img/outlander.jpg"/>
+            <field name="type">consu</field>
+        </record>
+    </data>
 </odoo>

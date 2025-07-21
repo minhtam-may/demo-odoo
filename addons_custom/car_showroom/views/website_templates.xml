@@ -6,16 +6,27 @@
             <div class="container">
                 <h2 class="text-center mb-4">Xe nổi bật</h2>
                 <div class="row">
-                    <t t-foreach="featured_cars" t-as="car">
+                    <t t-foreach="featured_products" t-as="product">
                         <div class="col-md-4 mb-4">
                             <div class="card h-100">
-                                        <t t-if="car.image">
-                                            <img t-att-src="'/web/image/car.showroom/%s/image' % car.id" class="card-img-top" style="height: 200px; object-fit: cover;" alt=""/>
-                                        </t>
+                                <t t-if="product.image_1920">
+                                    <img t-att-src="'/web/image/product.product/%s/image_1920' % product.product_variant_id.id" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Car Image"/>
+                                </t>
+                                <t t-else="">
+                                    <img src="/car_showroom/static/img/placeholder.png" class="card-img-top" style="height: 200px; object-fit: cover;" alt="No Image"/>
+                                </t>
                                 <div class="card-body">
-                                    <h5 class="card-title"><t t-esc="car.name"/></h5>
-                                    <p class="card-text">Hãng xe: <t t-esc="car.brand"/></p>
-                                    <p class="card-text">Giá: <t t-esc="'{:,}'.format(car.price)"/> VND</p>
+                                    <h5 class="card-title"><t t-esc="product.name"/></h5>
+                                    <p class="card-text">Hãng xe: Không xác định</p>
+                                    <p class="card-text">
+                                        Giá: 
+                                        <t t-if="product.list_price and currency">
+                                            <t t-esc="product.list_price"/> <t t-esc="currency.name"/>
+                                        </t>
+                                        <t t-else="">
+                                            Chưa có giá
+                                        </t>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -29,6 +40,9 @@
     <template id="car_showroom_list" name="Car List">
         <t t-call="website.layout">
             <div id="wrap" class="oe_structure">
+                <!-- Định nghĩa biến trước khi gọi snippet -->
+                <t t-set="featured_products" t-value="featured_products"/>
+                <t t-set="currency" t-value="currency"/>
                 <!-- Gọi template snippet -->
                 <t t-call="car_showroom.car_showroom_featured_cars_snippet_content"/>
 
@@ -37,19 +51,29 @@
                     <div class="container">
                         <h2 class="text-center mb-4">Danh sách xe</h2>
                         <div class="row">
-                            <t t-foreach="cars" t-as="car">
+                            <t t-foreach="products" t-as="product">
                                 <div class="col-md-4 mb-4">
                                     <div class="card h-100">
-                                        <t t-if="car.image">
-                                            <img t-att-src="'/web/image/car.showroom/%s/image' % car.id" class="card-img-top" style="height: 200px; object-fit: cover;" alt=""/>
-
+                                        <t t-if="product.image_1920">
+                                            <img t-att-src="'/web/image/product.product/%s/image_1920' % product.product_variant_id.id" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Car Image"/>
+                                        </t>
+                                        <t t-else="">
+                                            <img src="/car_showroom/static/img/placeholder.png" class="card-img-top" style="height: 200px; object-fit: cover;" alt="No Image"/>
                                         </t>
                                         <div class="card-body">
-                                            <h5 class="card-title"><t t-esc="car.name"/></h5>
-                                            <p class="card-text">Hãng xe: <t t-esc="car.brand"/></p>
-                                            <p class="card-text">Giá: <t t-esc="'{:,}'.format(car.price)"/> VND</p>
-                                            <p class="card-text">Tồn kho: <t t-esc="car.stock"/></p>
-                                            <a t-att-href="'/car/%s' % car.id" class="btn btn-primary">Xem chi tiết</a>
+                                            <h5 class="card-title"><t t-esc="product.name"/></h5>
+                                            <p class="card-text">Hãng xe: Không xác định</p>
+                                            <p class="card-text">
+                                                Giá: 
+                                                <t t-if="product.list_price and currency">
+                                                    <t t-esc="product.list_price"/> <t t-esc="currency.name"/>
+                                                </t>
+                                                <t t-else="">
+                                                    Chưa có giá
+                                                </t>
+                                            </p>
+                                            <p class="card-text">Tồn kho: <t t-esc="product.qty_available"/></p>
+                                            <a t-att-href="'/car/%s' % product.id" class="btn btn-primary">Xem chi tiết</a>
                                         </div>
                                     </div>
                                 </div>
@@ -70,15 +94,24 @@
                         <h2><t t-esc="car.name"/></h2>
                         <div class="row">
                             <div class="col-md-6">
-                                <t t-if="car.image">
-                                    <img t-att-src="'/web/image/car.showroom/%s/image' % car.id" class="img-fluid" style="max-height: 400px;" alt="Hình ảnh xe"/>
-
+                                <t t-if="car.image_1920">
+                                    <img t-att-src="'/web/image/product.product/%s/image_1920' % car.product_variant_id.id" class="img-fluid" style="max-height: 400px;" alt="Hình ảnh xe"/>
+                                </t>
+                                <t t-else="">
+                                    <img src="/car_showroom/static/img/placeholder.png" class="img-fluid" style="max-height: 400px;" alt="No Image"/>
                                 </t>
                             </div>
                             <div class="col-md-6">
-                                <p><strong>Hãng xe:</strong> <t t-esc="car.brand"/></p>
-                                <p><strong>Giá:</strong> <t t-esc="'{:,}'.format(car.price)"/> VND</p>
-                                <p><strong>Tồn kho:</strong> <t t-esc="car.stock"/></p>
+                                <p><strong>Hãng xe:</strong> Không xác định</p>
+                                <p><strong>Giá:</strong> 
+                                    <t t-if="car.list_price and currency">
+                                        <t t-esc="car.list_price"/> <t t-esc="currency.name"/>
+                                    </t>
+                                    <t t-else="">
+                                        Chưa có giá
+                                    </t>
+                                </p>
+                                <p><strong>Tồn kho:</strong> <t t-esc="car.qty_available"/></p>
                                 <a href="/cars" class="btn btn-secondary">Quay lại danh sách</a>
                             </div>
                         </div>

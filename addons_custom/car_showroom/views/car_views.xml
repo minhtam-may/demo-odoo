@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!-- <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <!-- Search View -->
     <record id="car_showroom_search_view" model="ir.ui.view">
@@ -121,4 +121,4 @@
     <menuitem id="car_showroom_menu_root" name="Car Showroom" sequence="10"/>
     <menuitem id="car_showroom_menu_cars" name="Cars" parent="car_showroom_menu_root"
               action="car_showroom_action" sequence="10"/>
-</odoo>
+</odoo> -->

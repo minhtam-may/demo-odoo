@@ -12,10 +12,8 @@
     'author': 'Your Name',
     'category': 'Sales',
     'license': 'LGPL-3',
-    'depends': ['base', 'website'],
+    'depends': ['base', 'website', 'stock', 'sale', 'product'],
     'data': [
-        'security/ir.model.access.csv',
-        'views/car_views.xml',
         'data/demo.xml',
         'views/website_templates.xml'
     ],
